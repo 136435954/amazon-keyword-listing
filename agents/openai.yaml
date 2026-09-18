@@ -1,0 +1,7 @@
+interface:
+  display_name: "亚马逊关键词库与Listing"
+  short_description: "从产品、竞品及关键词数据生成关键词库与本地化Listing"
+  default_prompt: "使用 $amazon-keyword-listing 分析我上传的产品资料和关键词数据，搭建关键词库并生成目标国家站点Listing。"
+
+policy:
+  allow_implicit_invocation: true
