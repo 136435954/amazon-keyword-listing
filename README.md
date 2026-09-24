@@ -18,6 +18,8 @@ $CODEX_HOME/skills/amazon-keyword-listing
 
 ## 使用
 
+完整的新对话调用模板及全部执行要求见：[USAGE_CN.md](USAGE_CN.md)。正式生产建议复制该完整模板；简短指令仅适合已经明确全部输入和要求的场景。
+
 新建任务后上传以下资料：
 
 - 产品图片和已确认的产品规格；
