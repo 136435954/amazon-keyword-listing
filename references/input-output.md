@@ -17,6 +17,8 @@ Advertising search-term reports and Search Query Performance are not required fo
 
 Before keyword decisions, record each claim with `字段`, `值`, `状态`, `证据来源`, and `可用于文案`. Allowed states are `已确认`, `待确认`, and `不具备/不匹配`. Only `已确认` facts may enter buyer-facing copy.
 
+For every confirmed measurement, also retain `原始数值`, `原始单位`, `目标站点单位`, `换算数值`, `换算系数`, and `舍入规则`. Unit conversion changes presentation only; it never upgrades an unconfirmed value into a confirmed fact.
+
 ## Preferred workbook inputs
 
 Recognize equivalent headers instead of requiring fixed names:

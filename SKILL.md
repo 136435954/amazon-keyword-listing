@@ -7,7 +7,7 @@ description: Analyze uploaded Amazon product information, product images, compet
 
 Build a traceable pre-launch keyword system, then write the target marketplace Listing from approved product facts and keywords.
 
-Fixed writing profile ID: `KAIHA-LISTING-2026-V10`.
+Fixed writing profile ID: `KAIHA-LISTING-2026-V11`.
 
 ## Required inputs and execution gate
 
@@ -43,9 +43,10 @@ For every final workbook, start from [assets/amazon-keyword-listing-output-templ
 4. Separate classification dimensions. A term can be relevant but unusable in a Listing, or usable in ads but unsuitable for SEO copy.
 5. Keep brand terms, colors, prohibited/high-risk claims, and their explanations explicit. Confirmed product attributes must not remain labeled as violations.
 6. Generate localized native-language copy. Apply the fixed structure and character targets to every marketplace as a house standard; change them only when the user explicitly requests a different profile.
-7. Avoid competitor brands in front-end copy and backend search terms. Keep them in a separate advertising/risk list only when useful and authorized.
-8. Do not claim keyword coverage by hiding irrelevant, false, or risky terms in copy. Report approved coverage and excluded terms separately.
-9. Never place internal review language in customer-facing copy or its translation. Phrases such as `待确认`, `确认后补充`, `以图片为准`, `资料未提供`, writing-process explanations, and equivalent localized wording belong only in the internal compliance/pre-launch section.
+7. Localize measurement units to the target marketplace's normal shopper usage. Preserve the confirmed source value, convert mathematically, and never infer a missing specification. Use inches and pounds/ounces for the US; use metric units for Germany and most EU marketplaces; follow the target site's established local convention elsewhere. Put localized dimensions, weight, capacity, and temperature in Item Highlights or bullets rather than displacing core title terms.
+8. Avoid competitor brands in front-end copy and backend search terms. Keep them in a separate advertising/risk list only when useful and authorized.
+9. Do not claim keyword coverage by hiding irrelevant, false, or risky terms in copy. Report approved coverage and excluded terms separately.
+10. Never place internal review language in customer-facing copy or its translation. Phrases such as `待确认`, `确认后补充`, `以图片为准`, `资料未提供`, writing-process explanations, and equivalent localized wording belong only in the internal compliance/pre-launch section.
 
 ## Workflow
 
@@ -53,6 +54,7 @@ For every final workbook, start from [assets/amazon-keyword-listing-output-templ
 
 - Select and record the run mode before analysis. Stop the production workflow when the mode is `输入审计`.
 - Record marketplace, language, brand, product type, confirmed features, colors, dimensions, materials, load limits, use cases, and unresolved facts.
+- Record every confirmed measurement in its source unit and create a separate marketplace-unit conversion table before drafting. The table must show source value/unit, converted value/unit, conversion factor, rounding decision, and where the localized value will appear.
 - Normalize whitespace, capitalization, HTML entities, decimal separators, and duplicate keyword rows without overwriting the raw source.
 - Identify the keyword column, volume/conversion fields, related ASINs, ranking fields, bid fields, and competitor coverage fields based on the supplied export.
 
@@ -69,6 +71,7 @@ For every final workbook, start from [assets/amazon-keyword-listing-output-templ
 ### 3. Write the Listing
 
 - Use only approved keywords and confirmed facts.
+- Express measurements in the units shoppers normally expect on the target marketplace. For US copy, use `in`, `lb`, and `oz` as appropriate; for Germany and most EU copy, use `cm`/`mm`, `kg`, and `g`; for other sites, apply the local marketplace convention established in `references/listing-writing-logic.md`. When useful for precision or cross-border clarity, show the confirmed source unit secondarily in parentheses, but keep the local unit first.
 - Produce title, Item Highlights, exactly five bullets, product description, backend search terms, Chinese translations, exact character/byte counts, keyword-placement mapping, and a compliance/self-check section.
 - In the `Listing文案` keyword-placement table, include only approved keywords actually embedded in the Listing. Keep rejected, risky, irrelevant, brand, wrong-variant, and unconfirmed terms in `关键词分析` and `关键词库`, not in the Listing worksheet.
 - Enforce the fixed targets: Title 65-70 visible characters; Item Highlights 120-125; each bullet 300-350; Search Term 240-249 UTF-8 bytes. Treat these as the user's production standard, not as a universal official Amazon rule.
@@ -91,7 +94,7 @@ For every final workbook, start from [assets/amazon-keyword-listing-output-templ
 - Deliver one final workbook unless the user requests separate documents.
 - Explain material limitations, especially missing dimensions, materials, ASIN/SKU, or marketplace-specific fields.
 - Treat any nonzero `validate_listing.py` result as a hard delivery failure. Revise the copy and rerun until it returns zero. Never export or label a workbook as final when validation fails.
-- Put `规则版本：KAIHA-LISTING-2026-V10` in the internal compliance section. If the generated workbook does not show this ID, the fixed writing profile was not applied and the result must be rejected.
+- Put `规则版本：KAIHA-LISTING-2026-V11` in the internal compliance section. If the generated workbook does not show this ID, the fixed writing profile was not applied and the result must be rejected.
 - Report `实际埋入关键词数：N / 25` in the keyword-placement verification section. Fewer than 25 unique approved embedded keywords is a hard failure. If the reviewed source pool contains fewer than 25 safe relevant terms, stop and report the shortage instead of inventing or forcing terms.
 - The `工作目标` cells must state exactly: Title `65-70字符`; Item Highlights `120-125字符`; each Bullet `300-350字符`; Search Term `240-249 UTF-8字节`. Never write `120-180`, `内部工作目标`, `建议范围`, or any alternative range.
 - Preserve the template's six worksheet names, order, section bands, merges, widths, heights, fills, borders, fonts, wrap settings, freeze panes, filters, charts, and print/display settings unless expansion is required for additional source rows. Expansion must copy the nearest matching template row style.
@@ -112,9 +115,10 @@ Never omit, reorder, or merge these stages:
 7. module-level keyword allocation plan;
 8. localized Listing drafting;
 9. character, UTF-8 byte, claim, brand, and placement validation;
-10. package-preserving template preparation and product-image replacement;
-11. fixed-cell population and safe keyword-table expansion;
-12. render inspection and fixed-format workbook delivery.
+10. marketplace-unit conversion and localized-unit validation;
+11. package-preserving template preparation and product-image replacement;
+12. fixed-cell population and safe keyword-table expansion;
+13. render inspection and fixed-format workbook delivery.
 
 The eight-section Listing layout and its character targets are the user's mandatory house output standard, not proof of an official Amazon rule. Do not silently adapt or relax them for another product or marketplace.
 

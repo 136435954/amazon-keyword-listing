@@ -12,6 +12,20 @@ Build buyer-facing copy only from approved keywords and `已确认` product fact
 - Fixed targets: Title 65-70 characters; Item Highlights 120-125; every bullet 300-350; Search Term 240-249 bytes.
 - These are user-defined production constraints. Do not call them universal official Amazon limits.
 
+## Marketplace measurement units
+
+Localize every buyer-facing dimension, weight, volume, capacity, and temperature to the units normally used by shoppers on the target marketplace. Determine the marketplace before conversion and keep a traceable conversion table in the internal product/compliance area.
+
+- United States: lead with inches (`in`), feet only when natural, pounds (`lb`), and ounces (`oz`). Use Fahrenheit only when temperature is relevant.
+- Germany and most continental EU marketplaces: lead with millimetres/centimetres/metres (`mm`, `cm`, `m`), grams/kilograms (`g`, `kg`), litres/millilitres (`l`, `ml`), and Celsius (`°C`). Use German decimal commas in German prose when appropriate.
+- United Kingdom: normally use centimetres/metres and grams/kilograms for product specifications; use inches or pounds only when the category and current UK customer convention clearly favor them.
+- Canada: normally lead with metric units; add an imperial equivalent only when category convention materially helps shoppers.
+- Japan: normally use millimetres/centimetres and grams/kilograms.
+- Australia: normally use centimetres/metres and grams/kilograms.
+- For any other marketplace, use the local convention demonstrated by the supplied marketplace data or authoritative site/category fields; if unclear, use that country's official measurement system and flag the decision internally.
+
+Conversions must be mathematical and reproducible: `1 in = 2.54 cm`, `1 lb = 0.45359237 kg`, `1 oz = 28.349523125 g`. Never convert an estimated or missing value. Round only to useful product precision, do not imply greater accuracy than the source, and use the same localized value consistently across product information, Item Highlights, bullets, description, and translations. If both systems are shown, put the local unit first and the confirmed source-unit equivalent in parentheses. Specifications remain out of the title unless the user explicitly overrides the fixed title rule.
+
 ## Prohibited language
 
 Exclude from all localized front-end copy and Search Term, including plurals and disguised variants:
@@ -39,6 +53,7 @@ If a source keyword contains prohibited wording, list it in the risk table with 
 
 - Use 120-125 characters.
 - Put confirmed dimensions, quantity, load capacity, color, material, compatibility, function, adult-relevant scenario, and high-value long tails here without copying the title.
+- Present dimensions, weight, load capacity, volume, and temperature in the target marketplace's localized units; use the same rounded values everywhere.
 - Use short clauses separated by ` | `; separators count toward length.
 - Output localized text, clause-by-clause Chinese translation, `XX / 125（120-125）`, and clause-level keyword placement.
 
@@ -113,5 +128,6 @@ Before delivery, verify:
 10. the description reads as a coherent purchase/use narrative rather than a feature list or keyword container.
 11. at least 25 unique approved full phrases are genuinely present and mapped; duplicates, roots, translations, and excluded phrases are not counted.
 12. no category-inappropriate filler appears, including assembly/setup claims for products that do not require meaningful setup.
+13. every buyer-facing measurement follows the target marketplace convention, matches the conversion table, and uses consistent rounding across all modules and Chinese translations.
 
 If any check fails, revise and re-run validation. Do not deliver a workbook labeled final with known failures.

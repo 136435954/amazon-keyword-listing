@@ -83,8 +83,31 @@ def main() -> int:
         report["errors"].append(f"bullet count must be exactly 5: got {len(bullets)}")
 
     profile_id = str(data.get("profile_id", ""))
-    if profile_id != "KAIHA-LISTING-2026-V10":
-        report["errors"].append("missing or incorrect profile_id: expected KAIHA-LISTING-2026-V10")
+    if profile_id != "KAIHA-LISTING-2026-V11":
+        report["errors"].append("missing or incorrect profile_id: expected KAIHA-LISTING-2026-V11")
+
+    marketplace = str(data.get("marketplace", "")).strip()
+    unit_localization = data.get("unit_localization")
+    if not marketplace:
+        report["errors"].append("marketplace is required for unit localization")
+    if not isinstance(unit_localization, dict):
+        report["errors"].append("unit_localization must be an object with source and localized measurement records")
+    else:
+        target_convention = str(unit_localization.get("target_convention", "")).strip()
+        conversions = unit_localization.get("conversions", [])
+        if not target_convention:
+            report["errors"].append("unit_localization.target_convention is required")
+        if not isinstance(conversions, list):
+            report["errors"].append("unit_localization.conversions must be a list")
+        else:
+            for index, item in enumerate(conversions, start=1):
+                if not isinstance(item, dict):
+                    report["errors"].append(f"unit conversion {index} must be an object")
+                    continue
+                required = ("field", "source_value", "source_unit", "localized_value", "localized_unit", "conversion_factor", "rounding")
+                missing = [key for key in required if str(item.get(key, "")).strip() == ""]
+                if missing:
+                    report["errors"].append(f"unit conversion {index} missing: {', '.join(missing)}")
 
     if not isinstance(bullet_topics, list) or len(bullet_topics) != 5:
         report["errors"].append("bullet_topics must contain exactly 5 product-specific topics")

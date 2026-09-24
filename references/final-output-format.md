@@ -12,9 +12,10 @@ Include:
 - excluded or unconfirmed facts;
 - marketplace and language;
 - a concise statement that raw keywords were filtered for truth, relevance, brand risk, and variant match.
-- `规则版本：KAIHA-LISTING-2026-V10`.
+- target-marketplace unit convention and a concise source-to-localized conversion record;
+- `规则版本：KAIHA-LISTING-2026-V11`.
 
-Any workbook missing this exact profile ID is not a valid final deliverable. The current exact profile ID is `KAIHA-LISTING-2026-V10`.
+Any workbook missing this exact profile ID is not a valid final deliverable. The current exact profile ID is `KAIHA-LISTING-2026-V11`.
 
 ## 2. 主标题 Title
 
@@ -108,6 +109,7 @@ Check and report:
 7. competitor-brand and infringement risk;
 8. backend UTF-8 byte count, separators, duplicates, and prohibited terms;
 9. localized copy and Chinese translation completeness.
+10. marketplace-local units, conversion accuracy, rounding consistency, and agreement between localized copy and Chinese translation.
 
 ## Spreadsheet presentation
 
